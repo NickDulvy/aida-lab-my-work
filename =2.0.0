@@ -1,0 +1,17 @@
+Collecting pandas
+  Downloading pandas-3.0.1-cp312-cp312-macosx_11_0_arm64.whl.metadata (79 kB)
+Collecting numpy>=1.26.0 (from pandas)
+  Downloading numpy-2.4.2-cp312-cp312-macosx_14_0_arm64.whl.metadata (6.6 kB)
+Collecting python-dateutil>=2.8.2 (from pandas)
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas)
+  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Downloading pandas-3.0.1-cp312-cp312-macosx_11_0_arm64.whl (9.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.9/9.9 MB 3.0 MB/s eta 0:00:00
+Downloading numpy-2.4.2-cp312-cp312-macosx_14_0_arm64.whl (5.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 1.9 MB/s eta 0:00:00
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Installing collected packages: six, numpy, python-dateutil, pandas
+
+Successfully installed numpy-2.4.2 pandas-3.0.1 python-dateutil-2.9.0.post0 six-1.17.0

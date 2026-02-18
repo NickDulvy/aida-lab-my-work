@@ -1,0 +1,100 @@
+[project]
+name = "aida-lab-participant"
+version = "0.1.0"
+description = "AI for Data Analytics Lab Materials - Participant Setup"
+readme = "README.md"
+requires-python = ">=3.11"
+
+# === PARTICIPANT-FACING DEPENDENCIES ONLY ===
+# Clean environment for students/participants
+
+dependencies = [
+# Core data science stack
+"pandas>=2.0.0",           # Module 2, 3, 4, 5, 6, 7, 8
+"numpy>=1.24.0",           # Module 2, 3, 4, 5, 6, 7, 8
+"matplotlib>=3.7.0",       # Module 2, 4, 5, 6, 7, 8
+"seaborn>=0.12.0",         # Module 2, 4, 5, 6, 7, 8
+"scipy>=1.4.1,<1.16",      # Module 3, 5, 6, 7, 8 (scientific computing, ydata-profiling compatible)
+
+# Jupyter and notebook tools
+"jupytext>=1.16.0",        # All modules (notebook format)
+"nbconvert>=7.0.0",        # All modules (notebook conversion)
+"ipykernel>=6.25.0",       # All modules (Jupyter kernel)
+"jupyterlab>=4.0.0",       # All modules (Jupyter interface)
+"ipywidgets>=8.1.0",       # Module 2, 4, 5, 6, 7, 8
+"jupyterlab-widgets>=3.0.0", # Module 2, 4, 5, 6, 7, 8
+"widgetsnbextension>=4.0.0", # Module 2, 4, 5, 6, 7, 8
+
+# AI/ML tools for EDA and analysis (optional - can be installed separately if needed)
+# "ydata-profiling>=4.6.0",  # Module 2 (automated EDA) - commented out due to scipy conflicts
+# "autoviz>=0.1.69",         # Module 2 (auto visualization) - commented out due to matplotlib style issues
+"scikit-learn>=1.3.0",     # Module 3, 5, 6, 7, 8 (ML models)
+"openai>=1.0.0",           # Module 2, 3, 4, 5, 6, 7, 8 (AI assistance)
+
+# Data processing and cleaning tools
+"skrub>=0.6.1",            # Module 3 (data cleaning and preprocessing)
+"tqdm>=4.67.1",            # Module 3, 4, 5, 6, 7, 8 (progress bars)
+
+# Module 4: AI-driven insights and dashboards
+"ucimlrepo>=0.0.3",        # Module 4 (UCI dataset access)
+"plotly>=5.0.0",           # Module 4 (interactive visualizations)
+"streamlit>=1.20.0",       # Module 4 (dashboard creation)
+"pyod>=1.1.0",             # Module 4 (modern anomaly detection)
+
+# Module 5: Model building and deployment
+"torch>=2.0.0",            # Module 5 (deep learning framework)
+"transformers>=4.30.0",    # Module 5 (Hugging Face transformers)
+"huggingface_hub>=0.16.0", # Module 5 (Hugging Face hub access)
+"requests>=2.31.0",        # Module 5 (HTTP requests)
+"xgboost>=1.7.0",          # Module 5 (gradient boosting)
+"lightgbm>=4.0.0",        # Module 5 (gradient boosting)
+
+# Additional ML libraries for advanced modules
+"optuna>=3.0.0",           # Module 7 (hyperparameter optimization)
+"mlflow>=2.0.0",           # Module 6 (MLOps and model tracking)
+
+# Optional advanced ML libraries (commented in notebooks)
+# Note: autosklearn and tpot are complex dependencies that may not be available on all platforms
+# "autosklearn>=0.15.0",     # Module 5 (automated ML) - commented out due to dependency issues
+# "tpot>=0.12.0",            # Module 5 (genetic programming for ML) - commented out due to dependency issues
+]
+
+[project.optional-dependencies]
+# === DEVELOPMENT TOOLS (for participants who want to contribute) ===
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "ruff>=0.5.0",
+]
+
+# UV-specific configuration for proper project workflow
+[tool.uv]
+# Using dependency-groups instead of deprecated dev-dependencies
+
+# No build system needed for student environment
+# This is just a dependency specification for UV
+
+[tool.poe.tasks]
+# === PARTICIPANT-FACING TASKS ===
+# These are safe for students/participants to use
+setup = { shell = "uv sync && uv run python -m ipykernel install --name python3 --user", help = "Set up the environment for working with notebooks" }
+install-kernel = { cmd = "uv run python -m ipykernel install --name python3 --user", help = "Install Jupyter kernel for notebook execution" }
+jupyter = { cmd = "uv run jupyter lab", help = "Start Jupyter Lab with UV environment" }
+jupyter-notebook = { cmd = "uv run jupyter notebook", help = "Start Jupyter Notebook with UV environment" }
+pull = { shell = "git pull", help = "Update to latest version" }
+check = { sequence = ["lint", "test"], help = "Check if everything is working" }
+
+# === UV PROJECT WORKFLOW TASKS ===
+uv-add = { cmd = "uv add {args}", help = "Add dependency to project (e.g., uv-add pandas)" }
+uv-remove = { cmd = "uv remove {args}", help = "Remove dependency from project (e.g., uv-remove pandas)" }
+uv-sync = { cmd = "uv sync", help = "Sync dependencies" }
+uv-upgrade = { cmd = "uv sync --upgrade", help = "Upgrade all dependencies" }
+uv-kernels = { cmd = "jupyter kernelspec list | grep python3", help = "List available kernels" }
+
+# === DEVELOPMENT TASKS (for contributors) ===
+lint = { shell = "uv run ruff check .", help = "Lint code and notebooks" }
+lint-verbose = { shell = "uv run flake8 . --max-line-length=120 --ignore=E203,W503 --exclude=.venv,__pycache__,.git,node_modules,build,dist", help = "Verbose linting" }
+do-format = { cmd = "uv run black .", help = "Format code with black" }
+test = { cmd = "uv run pytest", help = "Run tests" }
+clean = { shell = "rm -rf .venv/", help = "Clean build artifacts" }
