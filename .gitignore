@@ -1,0 +1,10 @@
+# Virtual environments (use only the project root .venv)
+.venv/
+module-03/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
