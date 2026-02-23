@@ -24,6 +24,7 @@ dependencies = [
 "ipywidgets>=8.1.0",       # Module 2, 4, 5, 6, 7, 8
 "jupyterlab-widgets>=3.0.0", # Module 2, 4, 5, 6, 7, 8
 "widgetsnbextension>=4.0.0", # Module 2, 4, 5, 6, 7, 8
+"ipympl>=0.9.3",           # Module 2, 3 (matplotlib in Jupyter Lab)
 
 # AI/ML tools for EDA and analysis (optional - can be installed separately if needed)
 # "ydata-profiling>=4.6.0",  # Module 2 (automated EDA) - commented out due to scipy conflicts
@@ -78,8 +79,8 @@ dev = [
 [tool.poe.tasks]
 # === PARTICIPANT-FACING TASKS ===
 # These are safe for students/participants to use
-setup = { shell = "uv sync && uv run python -m ipykernel install --name python3 --user", help = "Set up the environment for working with notebooks" }
-install-kernel = { cmd = "uv run python -m ipykernel install --name python3 --user", help = "Install Jupyter kernel for notebook execution" }
+setup = { shell = "uv sync && uv run python -m ipykernel install --name aida-lab-env --display-name \"Python (aida-lab-env)\" --user", help = "Set up the environment for working with notebooks" }
+install-kernel = { cmd = "uv run python -m ipykernel install --name aida-lab-env --display-name \"Python (aida-lab-env)\" --user", help = "Install Jupyter kernel for notebook execution" }
 jupyter = { cmd = "uv run jupyter lab", help = "Start Jupyter Lab with UV environment" }
 jupyter-notebook = { cmd = "uv run jupyter notebook", help = "Start Jupyter Notebook with UV environment" }
 pull = { shell = "git pull", help = "Update to latest version" }

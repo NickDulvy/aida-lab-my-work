@@ -1,4 +1,8 @@
-# How to Run the Notebook in Cursor (Option 2)
+# How to Run the Notebook in Cursor
+
+> **First run:** See **NOTEBOOK-SETUP.md** in the project root for one-time setup.
+
+## Kernel selection
 
 ## Prerequisites
 - Open Cursor with the folder **aida-lab-env** (File → Open Folder → select `aida-lab-env`)
