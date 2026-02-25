@@ -1,6 +1,4 @@
 {
-  // Cursor/VS Code integration with UV virtual environment
-  // Ensures Python and Jupyter use the UV-managed .venv
   "python.defaultInterpreterPath": "/Users/nickdulvy/Library/CloudStorage/GoogleDrive-ndulvy@gmail.com/My Drive/SFU_AIDA_Course_2026/aida-lab-env/.venv/bin/python",
   "python.terminal.activateEnvironment": true
 }
